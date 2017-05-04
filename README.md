@@ -1183,21 +1183,21 @@ The `RequestAdapter` protocol allows each `Request` made on a `SessionManager` t
 
 ```swift
 class AccessTokenAdapter: RequestAdapter {
-	private let accessToken: String
+    private let accessToken: String
 
-	init(accessToken: String) {
-		self.accessToken = accessToken
-	}
+    init(accessToken: String) {
+        self.accessToken = accessToken
+    }
 
-	func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
-	    var urlRequest = urlRequest
+    func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
+        var urlRequest = urlRequest
 
         if let urlString = urlRequest.url?.absoluteString, urlString.hasPrefix("https://httpbin.org") {
-		    urlRequest.setValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
-	    }
-
-	    return urlRequest
-	}
+            urlRequest.setValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
+        }
+        
+        return urlRequest
+    }
 }
 ```
 
